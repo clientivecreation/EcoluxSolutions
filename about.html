@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – ECOLUX Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&family=Roboto+Slab:wght@400;600;700&family=Exo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #000000;
+      --secondary: #ffffff;
+      --accent: #4db8d0;
+      --accent-light: #72cfe0;
+      --text-muted: #9ed4c2;
+      --border: #3dc28a;
+      --body-bg: #f4fdf9;
+      --green: #2fa872;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', sans-serif; background: #fff; color: #333; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background-color: #fff; border-bottom: 5px solid var(--accent);
+      display: flex; align-items: center; padding: 0 40px; min-height: 85px;
+    }
+    .header-inner { display: flex; align-items: center; width: 100%; gap: 20px; }
+    .header-logo { flex: 0 0 20%; }
+    .header-logo img { max-width: 60%; }
+    .header-nav { flex: 1; display: flex; justify-content: center; }
+    .header-nav ul { list-style: none; display: flex; gap: 5px; }
+    .header-nav ul li a {
+      font-size: 15px; font-weight: 500; color: #333;
+      padding: 8px 12px; border-radius: 3px; transition: color 0.2s;
+    }
+    .header-nav ul li a:hover, .header-nav ul li.active a { color: var(--accent); }
+    .header-cta { flex: 0 0 15%; display: flex; justify-content: flex-end; }
+    .btn-primary {
+      background: #0071b7; color: #fff; border: none; cursor: pointer;
+      padding: 10px 18px; border-radius: 5px; font-size: 14px; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #005a93; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Eculax-cover.jpg') center/cover no-repeat;
+      margin-top: 85px; padding: 100px 0 80px; text-align: center; position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.62);
+    }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-hero h1 {
+      font-family: 'Roboto Slab', serif; font-size: 52px; font-weight: 700;
+      color: #fff; margin-bottom: 20px;
+    }
+    .breadcrumb {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,0.4); border-radius: 4px;
+      padding: 8px 20px; color: rgba(255,255,255,0.85); font-size: 14px;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.85); }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.5); }
+
+    /* ── OUR STORY ── */
+    .story-section { padding: 90px 0; background: #fff; }
+    .story-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+    }
+    .story-photo {
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.12);
+    }
+    .story-photo img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .story-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .story-tag::before {
+      content: ''; display: inline-block; width: 24px; height: 2px; background: var(--green);
+    }
+    .story-heading {
+      font-family: 'Roboto Slab', serif; font-size: 34px; font-weight: 700;
+      color: #111; line-height: 1.25; margin-bottom: 22px;
+    }
+    .story-heading span { color: var(--green); }
+    .story-body { font-size: 15px; color: #555; line-height: 1.85; margin-bottom: 18px; }
+    .story-mission {
+      background: #f4fdf9; border-left: 4px solid var(--green);
+      padding: 18px 22px; border-radius: 0 6px 6px 0; margin-top: 10px;
+    }
+    .story-mission strong { display: block; font-size: 13px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .story-mission p { font-size: 14px; color: #444; line-height: 1.7; margin: 0; }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: #162716; padding: 55px 0; }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; text-align: center;
+    }
+    .stat-item {
+      padding: 10px 20px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Roboto Slab', serif; font-size: 46px; font-weight: 700;
+      color: var(--accent); line-height: 1; margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 500; line-height: 1.4;
+    }
+
+    /* ── MISSION & VALUES ── */
+    .values-section { padding: 90px 0; background: #f4fdf9; }
+    .values-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .values-header { text-align: center; margin-bottom: 55px; }
+    .values-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .values-heading {
+      font-family: 'Roboto Slab', serif; font-size: 34px; font-weight: 700;
+      color: #111; line-height: 1.25; max-width: 600px; margin: 0 auto;
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .value-card {
+      background: #fff; border-radius: 10px; padding: 36px 30px;
+      box-shadow: 0 3px 18px rgba(22,39,22,0.08);
+      border-top: 3px solid var(--green); text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(22,39,22,0.14); }
+    .value-icon {
+      width: 60px; height: 60px; background: #e8f9f2; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; color: var(--green);
+    }
+    .value-icon svg { width: 28px; height: 28px; }
+    .value-card h4 {
+      font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 700;
+      color: #111; margin-bottom: 12px;
+    }
+    .value-card p { font-size: 14px; color: #666; line-height: 1.75; margin: 0; }
+
+    /* ── WHY CHOOSE US ── */
+    .why-choose-us { background: #162716; padding: 80px 0; }
+    .wcu-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .wcu-photo { width: 100%; border-radius: 8px; display: block; margin-bottom: 24px; }
+    .wcu-trust-cards { display: flex; flex-direction: column; gap: 16px; }
+    .wcu-trust-card {
+      background: rgba(255,255,255,0.06); border-radius: 8px;
+      padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start; color: #fff;
+    }
+    .wcu-trust-icon {
+      width: 36px; height: 36px; background: rgba(255,255,255,0.12); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--text-muted);
+    }
+    .wcu-trust-icon svg { width: 18px; height: 18px; }
+    .wcu-trust-card strong { display: block; margin-bottom: 4px; font-size: 15px; }
+    .wcu-trust-card p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .wcu-label {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .wcu-heading {
+      color: #fff; font-size: 34px; font-family: 'Roboto Slab', serif;
+      line-height: 1.25; margin: 0 0 28px;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Eculax-cover.jpg') center/cover no-repeat;
+      padding: 90px 20px; text-align: center; position: relative;
+    }
+    .cta-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.60); }
+    .cta-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .cta-heading {
+      font-family: 'Roboto Slab', serif; font-size: 34px; font-weight: 700;
+      color: #fff; line-height: 1.35; margin-bottom: 28px;
+    }
+    .cta-heading span { color: var(--accent); }
+    .btn-cta {
+      display: inline-block; background: var(--green); color: #fff;
+      padding: 15px 40px; border-radius: 6px; font-size: 15px; font-weight: 700;
+      font-family: 'Roboto', sans-serif; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-cta:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section { background: #1e3320; padding: 70px 40px; }
+    .newsletter-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 60px;
+    }
+    .newsletter-text { flex: 1; }
+    .newsletter-text h2 { font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .newsletter-text p { font-size: 15px; color: rgba(255,255,255,0.7); }
+    .newsletter-form { display: flex; flex-direction: column; gap: 10px; width: 380px; flex-shrink: 0; }
+    .newsletter-form input {
+      padding: 13px 18px; border: none; border-radius: 5px;
+      font-size: 14px; font-family: 'Roboto', sans-serif; width: 100%;
+    }
+    .newsletter-form button {
+      background: var(--green); color: #fff; border: none; cursor: pointer;
+      padding: 13px; border-radius: 5px; font-size: 14px; font-weight: 700;
+      letter-spacing: 1px; transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    .site-footer { background: #0d1a0d; }
+    .footer-main {
+      max-width: 1100px; margin: 0 auto; padding: 60px 40px 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    }
+    .footer-logo { max-width: 180px; display: block; margin-bottom: 16px; }
+    .footer-tagline { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; margin: 0 0 10px; }
+    .footer-abn { color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 700; margin: 0 0 20px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social-link {
+      width: 36px; height: 36px; border-radius: 6px; background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none; font-size: 14px; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .footer-social-link:hover { background: #1e3320; }
+    .footer-col-title { color: #fff; font-size: 15px; font-weight: 700; margin: 0 0 20px; font-family: 'Roboto Slab', serif; }
+    .addr-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .addr-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: rgba(255,255,255,0.6); padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .addr-list li:last-child { border-bottom: none; }
+    .addr-list li .pin { color: var(--green); flex-shrink: 0; }
+    .footer-bar {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 40px; max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: rgba(255,255,255,0.4);
+    }
+    .footer-bar a { color: var(--accent); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.65); z-index: 9999;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff; border-radius: 8px; padding: 40px;
+      max-width: 520px; width: 90%; position: relative;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-close {
+      position: absolute; top: 15px; right: 18px;
+      font-size: 22px; color: #888; cursor: pointer; background: none; border: none;
+    }
+    .modal-close:hover { color: #333; }
+    .modal-box h2 { font-size: 24px; color: #333; margin-bottom: 20px; }
+    .ff-form { display: flex; flex-direction: column; gap: 15px; }
+    .ff-form input, .ff-form textarea {
+      width: 100%; padding: 12px 15px; border: 1px solid #b0d8c4;
+      border-radius: 5px; font-size: 14px; font-family: 'Roboto', sans-serif;
+      background: #fff; transition: border-color 0.2s;
+    }
+    .ff-form input:focus, .ff-form textarea:focus { outline: none; border-color: var(--accent); }
+    .ff-form textarea { min-height: 80px; resize: vertical; }
+    .ff-submit {
+      background: #1e3320; color: #fff; border: none; cursor: pointer;
+      padding: 13px 30px; border-radius: 5px; font-size: 15px; font-weight: 600;
+      font-family: 'Roboto', sans-serif; transition: background 0.2s; width: 100%; text-align: center;
+    }
+    .ff-submit:hover { background: var(--accent); }
+
+    @media (max-width: 1024px) {
+      .story-inner { grid-template-columns: 1fr; }
+      .story-photo img { height: 300px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.12); }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 30px; margin-top: 10px; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .wcu-inner { grid-template-columns: 1fr; }
+      .newsletter-inner { flex-direction: column; gap: 28px; }
+      .newsletter-form { width: 100%; }
+      .footer-main { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 767px) {
+      .site-header { padding: 0 16px; }
+      .header-nav, .header-cta { display: none; }
+      .page-hero h1 { font-size: 34px; }
+      .page-hero { padding: 80px 20px 60px; }
+      .story-heading { font-size: 26px; }
+      .stat-number { font-size: 36px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .wcu-heading { font-size: 26px; }
+      .footer-bar { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <a href="index.html">
+        <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/ECOLUX-logo.png" alt="ECOLUX Solutions" width="200">
+      </a>
+    </div>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li class="active"><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="availability.html">Availability</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <button class="btn-primary" onclick="openModal()">Get a Free Quote</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <h1>About Us</h1>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">&#8250;</span>
+      <span>About Us</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── OUR STORY ── -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-photo">
+      <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Eculax-cover.jpg" alt="ECOLUX team at work">
+    </div>
+    <div class="story-content">
+      <p class="story-tag">Our Story</p>
+      <h2 class="story-heading">Australia's Reliable <span>Residential &amp; Commercial</span> Solar Partner</h2>
+      <p class="story-body">ECOLUX Solutions was founded with a single purpose: to make clean, affordable solar energy accessible to every Australian home and business. With decades of combined industry expertise, our team of fully licensed and insured technicians delivers seamless, end-to-end solar installation services across NSW, SA, ACT, and VIC.</p>
+      <p class="story-body">From small residential rooftops to large commercial facilities, we design and install customised solar systems built to perform reliably for two decades and more. Every project is backed by our commitment to quality, compliance, and genuine long-term partnerships with our clients.</p>
+      <div class="story-mission">
+        <strong>Our Mission</strong>
+        <p>To empower Australians with energy independence through trusted, high-quality solar solutions — reducing power bills, cutting emissions, and building a sustainable future one installation at a time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Years of Industry<br>Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Locations Across<br>Australia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Installations<br>Completed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Licensed &amp; Insured<br>Technicians</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MISSION & VALUES ── -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="values-header">
+      <p class="values-tag">What We Stand For</p>
+      <h2 class="values-heading">Our Core Values &amp; Commitments</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h4>Quality &amp; Compliance</h4>
+        <p>All installations meet Australian standards with fully licensed Level 2 electricians and mandatory compliance checks on every job.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h4>Long-Term Partnership</h4>
+        <p>We're not just installers — we're your energy partner for life, providing ongoing support well beyond the day of installation.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h4>Transparency</h4>
+        <p>Clear pricing, honest advice and no hidden costs. We walk you through every step so you always know exactly what you're getting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ── -->
+<section class="why-choose-us">
+  <div class="wcu-inner">
+    <div>
+      <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Eculax-cover.jpg" alt="ECOLUX Solar Experts" class="wcu-photo">
+    </div>
+    <div>
+      <p class="wcu-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Why Choose ECOLUX
+      </p>
+      <h2 class="wcu-heading">Australia's Most Trusted Solar Experts</h2>
+      <div class="wcu-trust-cards">
+        <div class="wcu-trust-card">
+          <div class="wcu-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Fully Licensed &amp; Insured</strong>
+            <p>Every technician is a certified Level 2 electrician with full insurance cover and mandatory compliance clearance.</p>
+          </div>
+        </div>
+        <div class="wcu-trust-card">
+          <div class="wcu-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <strong>End-to-End Service</strong>
+            <p>From initial consultation and custom design through to installation, rebate processing and aftercare — all under one roof.</p>
+          </div>
+        </div>
+        <div class="wcu-trust-card">
+          <div class="wcu-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Built to Last 20+ Years</strong>
+            <p>We only install premium, performance-tested equipment designed to deliver reliable energy output for decades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2 class="cta-heading">Ready to Make the Switch to <span>Solar?</span></h2>
+    <button class="btn-cta" onclick="openModal()">Get a Free Quote Today</button>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <h2>Subscribe Newsletter</h2>
+      <p>Stay up to date with our latest news and updates.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="Email">
+      <button type="submit">SUBMIT</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div>
+      <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/ECOLUX-white-1.png" alt="ECOLUX Solutions" class="footer-logo">
+      <p class="footer-tagline">Stop paying high energy bills and secure your power independence with Australia's trusted solar experts.</p>
+      <p class="footer-abn">ABN: 94 681 118 285</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/ecoluxsolution" target="_blank" class="footer-social-link" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/ecoluxsolution/" target="_blank" class="footer-social-link" aria-label="Instagram">in</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="footer-col-title">Our Address</h4>
+      <ul class="addr-list">
+        <li><span class="pin">&#128205;</span> 20-28 Carrington Road, Marrickville, NSW, 2204</li>
+        <li><span class="pin">&#128205;</span> 28 Hawker Road Burton SA 5110</li>
+        <li><span class="pin">&#128205;</span> 12 Jimmy Clements Cres Bonner ACT 2914</li>
+        <li><span class="pin">&#128205;</span> 85 Hillcrest Drive Hillside VIC 3037</li>
+        <li><span class="pin">&#128205;</span> 19 Morris St Birmingham Gardens NSW 2287</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <span>ECOLUX Solutions &copy; All Rights Reserved</span>
+    <span>Tech Partners: <a href="http://stechs.com.au/" target="_blank">S-Tech Solutions</a></span>
+  </div>
+</footer>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="quoteModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&#10005;</button>
+    <h2>Get a Free Quote</h2>
+    <form class="ff-form" onsubmit="return false;" style="gap:12px;">
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email Address" required>
+      <input type="number" placeholder="Phone Number">
+      <input type="text" placeholder="Suburb / State">
+      <textarea placeholder="Tell us about your energy needs..." style="min-height:80px;"></textarea>
+      <button type="submit" class="ff-submit">Submit Enquiry</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal() { document.getElementById('quoteModal').classList.add('open'); }
+  function closeModal() { document.getElementById('quoteModal').classList.remove('open'); }
+  function closeModalOutside(e) { if (e.target === document.getElementById('quoteModal')) closeModal(); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
+
