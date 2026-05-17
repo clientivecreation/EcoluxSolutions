@@ -184,14 +184,19 @@
     }
     .footer-social-link:hover { background: #1e3320; }
     .footer-col-title { color: #fff; font-size: 15px; font-weight: 700; margin: 0 0 20px; font-family: 'Roboto Slab', serif; }
-    .addr-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .addr-list li {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 13px; color: rgba(255,255,255,0.6); padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+    
+    .addr-cards { display: flex; flex-direction: column; gap: 8px; }
+    .addr-card {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      line-height: 1.45;
     }
-    .addr-list li:last-child { border-bottom: none; }
-    .addr-list li .pin { color: var(--green); flex-shrink: 0; }
+    .addr-pin-icon { flex-shrink: 0; color: #4db8d0; margin-top: 2px; }
     .footer-bar {
       border-top: 1px solid rgba(255,255,255,0.08);
       padding: 18px 40px; max-width: 1100px; margin: 0 auto;
@@ -245,9 +250,93 @@
       .newsletter-inner { flex-direction: column; gap: 28px; }
       .newsletter-form { width: 100%; }
       .footer-main { grid-template-columns: 1fr; gap: 40px; }
-      .footer-bar { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
+    .footer-bar { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
     }
-  </style>
+
+    /* ── MOBILE HAMBURGER NAV ── */
+    .nav-toggle {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; background: none; border: none; cursor: pointer;
+      padding: 8px; flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: #333; border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* Header */
+      .site-header { padding: 0 20px !important; }
+      .header-cta { display: none !important; }
+      .nav-toggle { display: flex; }
+      .header-nav {
+        display: none !important;
+        position: fixed; top: 85px; left: 0; right: 0;
+        background: #fff; z-index: 998;
+        padding: 10px 20px 20px;
+        border-top: 2px solid #4db8d0;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      }
+      .header-nav.open { display: block !important; }
+      .header-nav ul { flex-direction: column !important; gap: 2px; }
+      .header-nav ul li a {
+        display: block; padding: 13px 16px;
+        font-size: 16px; border-radius: 6px; color: #333;
+      }
+      .header-nav ul li a:hover,
+      .header-nav ul li.active a { background: #f4fdf9; color: #4db8d0; }
+      /* Hero */
+      .page-hero { padding: 70px 20px 55px !important; }
+      .page-hero h1 { font-size: 28px !important; }
+      .hero-subtitle { font-size: 16px !important; }
+      /* Service cards (homepage) */
+      .services-cards-grid { gap: 14px !important; }
+      .svc-card { flex: 0 0 calc(50% - 8px) !important; min-width: 0 !important; }
+      /* Availability cards */
+      .scheme-card { flex: 0 0 calc(50% - 12px) !important; min-width: 0 !important; }
+      /* Product cards */
+      .product-card { flex: 0 0 calc(50% - 12px) !important; min-width: 0 !important; }
+      /* About page */
+      .story-inner { grid-template-columns: 1fr !important; gap: 32px; }
+      .story-photo img { height: 220px !important; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr) !important; }
+      .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 16px 10px !important; }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-number { font-size: 32px !important; }
+      .values-grid { grid-template-columns: 1fr !important; }
+      /* Services tab */
+      .tab-panel.active { grid-template-columns: 1fr !important; }
+      .tabs-heading { font-size: 22px !important; }
+      .tab-btn { font-size: 12px !important; padding: 10px 10px !important; }
+      /* Contact card */
+      .contact-card { grid-template-columns: 1fr !important; margin: 0 16px !important; top: -50px !important; }
+      /* Shared */
+      .wcu-inner { grid-template-columns: 1fr !important; }
+      .wcu-photo { margin-bottom: 0 !important; }
+      /* Typography */
+      .section-heading { font-size: 22px !important; }
+      .wcu-heading { font-size: 22px !important; }
+      .story-heading { font-size: 22px !important; }
+      .cta-heading { font-size: 22px !important; }
+      .cta-banner { padding: 60px 20px !important; }
+      /* Newsletter */
+      .newsletter-section { padding: 50px 20px !important; }
+      .newsletter-inner { flex-direction: column !important; gap: 24px; }
+      .newsletter-form { width: 100% !important; }
+      /* Footer */
+      .footer-main { grid-template-columns: 1fr !important; gap: 28px; padding: 40px 20px 28px !important; }
+    .footer-bar { flex-direction: column !important; gap: 6px; text-align: center; padding: 16px 20px !important; }
+      .footer-grid { grid-template-columns: 1fr !important; }
+      /* Containers */
+      .container { padding: 0 20px !important; }
+      .products-inner { padding: 0 20px !important; }
+      .values-inner { padding: 0 20px !important; }
+      .story-inner { padding: 0 20px !important; }
+    }  </style>
 </head>
 <body>
 
@@ -259,7 +348,7 @@
         <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/ECOLUX-logo.png" alt="ECOLUX Solutions" width="200">
       </a>
     </div>
-    <nav class="header-nav">
+    <nav class="header-nav" id="mainNav">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
@@ -267,11 +356,11 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="availability.html">Availability</a></li>
         <li class="active"><a href="contact.html">Contact Us</a></li>
-      </ul>
+
     </nav>
     <div class="header-cta">
       <button class="btn-primary" onclick="openModal()">Get a Free Quote</button>
-    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" onclick="toggleNav()"><span></span><span></span><span></span></button>    </div>
   </div>
 </header>
 
@@ -326,7 +415,7 @@
           </svg>
           <a href="mailto:info@ecoluxsolutions.com.au">info@ecoluxsolutions.com.au</a>
         </li>
-      </ul>
+
     </div>
 
     <!-- White right form panel -->
@@ -373,13 +462,14 @@
     </div>
     <div>
       <h4 class="footer-col-title">Our Address</h4>
-      <ul class="addr-list">
-        <li><span class="pin">&#128205;</span> 20-28 Carrington Road, Marrickville, NSW, 2204</li>
-        <li><span class="pin">&#128205;</span> 28 Hawker Road Burton SA 5110</li>
-        <li><span class="pin">&#128205;</span> 12 Jimmy Clements Cres Bonner ACT 2914</li>
-        <li><span class="pin">&#128205;</span> 85 Hillcrest Drive Hillside VIC 3037</li>
-        <li><span class="pin">&#128205;</span> 19 Morris St Birmingham Gardens NSW 2287</li>
-      </ul>
+      <div class="addr-cards">
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>20-28 Carrington Road, Marrickville NSW 2204</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>28 Hawker Road, Burton SA 5110</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>12 Jimmy Clements Cres, Bonner ACT 2914</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>85 Hillcrest Drive, Hillside VIC 3037</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>19 Morris St, Birmingham Gardens NSW 2287</span></div>
+      </div>
+
     </div>
   </div>
   <div class="footer-bar">
@@ -405,10 +495,39 @@
 </div>
 
 <script>
-  function openModal() { document.getElementById('quoteModal').classList.add('open'); }
+  function openModal() { document.getElementById('quoteModal').classList.add('open');
+  function toggleNav() {
+    var nav = document.getElementById('mainNav');
+    var btn = document.getElementById('navToggle');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#mainNav a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('mainNav').classList.remove('open');
+        document.getElementById('navToggle').classList.remove('open');
+      });
+    });
+  }); }
   function closeModal() { document.getElementById('quoteModal').classList.remove('open'); }
   function closeModalOutside(e) { if (e.target === document.getElementById('quoteModal')) closeModal(); }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function toggleNav() {
+    var nav = document.getElementById('mainNav');
+    var btn = document.getElementById('navToggle');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#mainNav a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('mainNav').classList.remove('open');
+        document.getElementById('navToggle').classList.remove('open');
+      });
+    });
+  });
 </script>
 </body>
 </html>

@@ -123,11 +123,7 @@
       box-shadow: 0 6px 28px rgba(0,0,0,0.12);
     }
     .tab-content {}
-    .tab-avail {
-      display: inline-block; background: #e8f9f2; color: var(--green);
-      font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px;
-    }
+    
     .tab-content h3 {
       font-family: 'Roboto Slab', serif; font-size: 26px; font-weight: 700;
       color: var(--primary); margin-bottom: 14px; line-height: 1.25;
@@ -144,13 +140,6 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
     }
-    .tab-cta {
-      display: inline-block; background: var(--green); color: #fff;
-      padding: 13px 30px; border-radius: 6px; font-size: 14px; font-weight: 700;
-      font-family: 'Roboto', sans-serif; transition: background 0.2s, transform 0.15s;
-      border: none; cursor: pointer; white-space: nowrap;
-    }
-    .tab-cta:hover { background: var(--accent); transform: translateY(-2px); }
 
     /* ── WHY CHOOSE US ── */
     .why-choose-us { background: #162716; padding: 80px 0; }
@@ -251,14 +240,19 @@
     }
     .footer-social-link:hover { background: var(--green); }
     .footer-col-title { color: #fff; font-size: 15px; font-weight: 700; margin: 0 0 20px; font-family: 'Roboto Slab', serif; }
-    .addr-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .addr-list li {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 13px; color: rgba(255,255,255,0.6); padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+    
+    .addr-cards { display: flex; flex-direction: column; gap: 8px; }
+    .addr-card {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      line-height: 1.45;
     }
-    .addr-list li:last-child { border-bottom: none; }
-    .addr-list li .pin { color: var(--green); flex-shrink: 0; }
+    .addr-pin-icon { flex-shrink: 0; color: #4db8d0; margin-top: 2px; }
     .footer-bar {
       border-top: 1px solid rgba(255,255,255,0.08);
       padding: 18px 40px; max-width: 1100px; margin: 0 auto;
@@ -317,9 +311,93 @@
       .tab-btn { font-size: 12px; padding: 10px 12px; }
       .tabs-heading { font-size: 24px; }
       .wcu-heading { font-size: 26px; }
-      .footer-bar { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
+    .footer-bar { flex-direction: column; gap: 6px; text-align: center; padding: 18px 20px; }
     }
-  </style>
+
+    /* ── MOBILE HAMBURGER NAV ── */
+    .nav-toggle {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; background: none; border: none; cursor: pointer;
+      padding: 8px; flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: #333; border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* Header */
+      .site-header { padding: 0 20px !important; }
+      .header-cta { display: none !important; }
+      .nav-toggle { display: flex; }
+      .header-nav {
+        display: none !important;
+        position: fixed; top: 85px; left: 0; right: 0;
+        background: #fff; z-index: 998;
+        padding: 10px 20px 20px;
+        border-top: 2px solid #4db8d0;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      }
+      .header-nav.open { display: block !important; }
+      .header-nav ul { flex-direction: column !important; gap: 2px; }
+      .header-nav ul li a {
+        display: block; padding: 13px 16px;
+        font-size: 16px; border-radius: 6px; color: #333;
+      }
+      .header-nav ul li a:hover,
+      .header-nav ul li.active a { background: #f4fdf9; color: #4db8d0; }
+      /* Hero */
+      .page-hero { padding: 70px 20px 55px !important; }
+      .page-hero h1 { font-size: 28px !important; }
+      .hero-subtitle { font-size: 16px !important; }
+      /* Service cards (homepage) */
+      .services-cards-grid { gap: 14px !important; }
+      .svc-card { flex: 0 0 calc(50% - 8px) !important; min-width: 0 !important; }
+      /* Availability cards */
+      .scheme-card { flex: 0 0 calc(50% - 12px) !important; min-width: 0 !important; }
+      /* Product cards */
+      .product-card { flex: 0 0 calc(50% - 12px) !important; min-width: 0 !important; }
+      /* About page */
+      .story-inner { grid-template-columns: 1fr !important; gap: 32px; }
+      .story-photo img { height: 220px !important; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr) !important; }
+      .stat-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 16px 10px !important; }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-number { font-size: 32px !important; }
+      .values-grid { grid-template-columns: 1fr !important; }
+      /* Services tab */
+      .tab-panel.active { grid-template-columns: 1fr !important; }
+      .tabs-heading { font-size: 22px !important; }
+      .tab-btn { font-size: 12px !important; padding: 10px 10px !important; }
+      /* Contact card */
+      .contact-card { grid-template-columns: 1fr !important; margin: 0 16px !important; top: -50px !important; }
+      /* Shared */
+      .wcu-inner { grid-template-columns: 1fr !important; }
+      .wcu-photo { margin-bottom: 0 !important; }
+      /* Typography */
+      .section-heading { font-size: 22px !important; }
+      .wcu-heading { font-size: 22px !important; }
+      .story-heading { font-size: 22px !important; }
+      .cta-heading { font-size: 22px !important; }
+      .cta-banner { padding: 60px 20px !important; }
+      /* Newsletter */
+      .newsletter-section { padding: 50px 20px !important; }
+      .newsletter-inner { flex-direction: column !important; gap: 24px; }
+      .newsletter-form { width: 100% !important; }
+      /* Footer */
+      .footer-main { grid-template-columns: 1fr !important; gap: 28px; padding: 40px 20px 28px !important; }
+    .footer-bar { flex-direction: column !important; gap: 6px; text-align: center; padding: 16px 20px !important; }
+      .footer-grid { grid-template-columns: 1fr !important; }
+      /* Containers */
+      .container { padding: 0 20px !important; }
+      .products-inner { padding: 0 20px !important; }
+      .values-inner { padding: 0 20px !important; }
+      .story-inner { padding: 0 20px !important; }
+    }  </style>
 </head>
 <body>
 
@@ -331,7 +409,7 @@
         <img src="https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/ECOLUX-logo.png" alt="ECOLUX Solutions" width="200">
       </a>
     </div>
-    <nav class="header-nav">
+    <nav class="header-nav" id="mainNav">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
@@ -339,11 +417,11 @@
         <li class="active"><a href="services.html">Services</a></li>
         <li><a href="availability.html">Availability</a></li>
         <li><a href="contact.html">Contact Us</a></li>
-      </ul>
+
     </nav>
     <div class="header-cta">
       <button class="btn-primary" onclick="openModal()">Get a Free Quote</button>
-    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" onclick="toggleNav()"><span></span><span></span><span></span></button>    </div>
   </div>
 </header>
 
@@ -389,7 +467,6 @@
     <div class="tab-panel active" data-panel="0">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/foxess.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in VIC &amp; SA</span>
         <h3>Commercial Lighting Scheme</h3>
         <p>Upgrade your commercial property to energy-efficient LED lighting through government-backed rebate programs. Our certified team handles everything from site assessment to installation, helping you cut operating costs and improve your business's sustainability profile with zero hassle.</p>
         <ul class="tab-bullets">
@@ -397,8 +474,6 @@
           <li>LED upgrades reduce energy consumption by up to 70%</li>
           <li>Suitable for offices, warehouses, retail stores &amp; more</li>
           <li>Professional assessment and seamless installation included</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -406,7 +481,6 @@
     <div class="tab-panel" data-panel="1">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Ecolux-Web-Cover.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in NSW</span>
         <h3>HEER Scheme Lighting <span style="font-size:16px;font-weight:400;color:#888;">(Small Business)</span></h3>
         <p>The High Efficiency Equipment Replacement (HEER) Scheme is a NSW Government initiative helping small businesses replace inefficient lighting with modern LED alternatives at minimal upfront cost. Ecolux manages the entire process — from eligibility check to completed installation.</p>
         <ul class="tab-bullets">
@@ -414,8 +488,6 @@
           <li>Replaces fluorescent &amp; halogen fittings with LED</li>
           <li>Reduces lighting energy use by up to 80%</li>
           <li>Fast turnaround with minimal business disruption</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -423,7 +495,6 @@
     <div class="tab-panel" data-panel="2">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Eco-Web-Cover-03.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in NSW &amp; VIC</span>
         <h3>Hot Water Systems &amp; Air Conditioning</h3>
         <p>Replace old, inefficient hot water systems and air conditioning units with modern, energy-efficient alternatives through government rebate programs. Our team assesses your current setup and recommends the best solution to significantly reduce your bills and improve comfort.</p>
         <ul class="tab-bullets">
@@ -431,8 +502,6 @@
           <li>Reverse-cycle air conditioning upgrades available</li>
           <li>Significant reduction in household energy consumption</li>
           <li>Available for residential and commercial properties</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -440,7 +509,6 @@
     <div class="tab-panel" data-panel="3">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/7.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in NSW &amp; VIC</span>
         <h3>Insulation <span style="font-size:16px;font-weight:400;color:#888;">(Roof &amp; Wall)</span></h3>
         <p>Improve your property's thermal efficiency with quality roof and wall insulation. Government rebate programs reduce upfront costs, helping you achieve a more comfortable, energy-efficient home or business all year round — cooler in summer and warmer in winter.</p>
         <ul class="tab-bullets">
@@ -448,8 +516,6 @@
           <li>Roof and wall insulation options available</li>
           <li>Improves indoor comfort in all seasons</li>
           <li>Government rebates available for eligible properties</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -457,7 +523,6 @@
     <div class="tab-panel" data-panel="4">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/Commercial-Solar-Power-Systems.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in All States</span>
         <h3>Solar Panels</h3>
         <p>High-efficiency solar panels designed for residential and commercial properties across Australia. Our certified installers design a system tailored to your roof, orientation, and energy profile — engineered to deliver maximum output and savings for decades to come.</p>
         <ul class="tab-bullets">
@@ -465,8 +530,6 @@
           <li>Custom system design for your roof and energy needs</li>
           <li>Residential and commercial installations available</li>
           <li>Dramatically reduce your electricity bills</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -474,7 +537,6 @@
     <div class="tab-panel" data-panel="5">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/battery.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in All States</span>
         <h3>Solar Batteries</h3>
         <p>Store the solar energy you generate and use it when you need it most. Our advanced battery storage solutions give you greater energy independence, reduce grid reliance, and protect you against power outages and rising electricity costs.</p>
         <ul class="tab-bullets">
@@ -482,8 +544,6 @@
           <li>Compatible with new and existing solar systems</li>
           <li>Smart monitoring and real-time management</li>
           <li>Industry-leading systems including FoxESS</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -491,7 +551,6 @@
     <div class="tab-panel" data-panel="6">
       <div class="tab-img" style="background-image:url('https://ecoluxsolutions.com.au/wp-content/uploads/2025/12/inverter.jpg');"></div>
       <div class="tab-content">
-        <span class="tab-avail">&#128205; Available in All States</span>
         <h3>Inverters</h3>
         <p>Premium solar inverters that convert your panels' DC energy into usable AC power with maximum efficiency. We supply and install industry-leading inverter brands trusted by homeowners and businesses nationwide — including hybrid models compatible with battery storage.</p>
         <ul class="tab-bullets">
@@ -499,8 +558,6 @@
           <li>Real-time performance monitoring included</li>
           <li>Fully compatible with battery storage systems</li>
           <li>Brands including FoxESS and Sungrow</li>
-        </ul>
-        <a href="availability.html" class="tab-cta">Check Availability in Your State</a>
       </div>
     </div>
 
@@ -583,13 +640,15 @@
     </div>
     <div>
       <h4 class="footer-col-title">Our Address</h4>
-      <ul class="addr-list">
-        <li><span class="pin">&#128205;</span> 20-28 Carrington Road, Marrickville, NSW, 2204</li>
-        <li><span class="pin">&#128205;</span> 28 Hawker Road Burton SA 5110</li>
-        <li><span class="pin">&#128205;</span> 12 Jimmy Clements Cres Bonner ACT 2914</li>
-        <li><span class="pin">&#128205;</span> 85 HILLCREST DR HILLSIDE VIC 3037</li>
-        <li><span class="pin">&#128205;</span> 19 Morris St Birmingham Gardens NSW 2287</li>
-      </ul>
+
+      <div class="addr-cards">
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>20-28 Carrington Road, Marrickville NSW 2204</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>28 Hawker Road, Burton SA 5110</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>12 Jimmy Clements Cres, Bonner ACT 2914</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>85 Hillcrest Drive, Hillside VIC 3037</span></div>
+        <div class="addr-card"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="addr-pin-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> <span>19 Morris St, Birmingham Gardens NSW 2287</span></div>
+      </div>
+
     </div>
   </div>
   <div class="footer-bar">
@@ -639,9 +698,38 @@
   if (urlTab !== null) activateTab(urlTab);
 
   /* ── Modal ── */
-  function openModal() { document.getElementById('quoteModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function openModal() { document.getElementById('quoteModal').classList.add('open');
+  function toggleNav() {
+    var nav = document.getElementById('mainNav');
+    var btn = document.getElementById('navToggle');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#mainNav a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('mainNav').classList.remove('open');
+        document.getElementById('navToggle').classList.remove('open');
+      });
+    });
+  }); document.body.style.overflow = 'hidden'; }
   function closeModal() { document.getElementById('quoteModal').classList.remove('open'); document.body.style.overflow = ''; }
   function closeModalOutside(e) { if (e.target === document.getElementById('quoteModal')) closeModal(); }
+
+  function toggleNav() {
+    var nav = document.getElementById('mainNav');
+    var btn = document.getElementById('navToggle');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#mainNav a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('mainNav').classList.remove('open');
+        document.getElementById('navToggle').classList.remove('open');
+      });
+    });
+  });
 </script>
 </body>
 </html>
